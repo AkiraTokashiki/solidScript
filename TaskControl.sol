@@ -13,8 +13,9 @@ contract TaskContract {
     }
     Task[] tasks;
 
-    function createTask () public { 
-        tasks.push(Task(1, "tarea 1", "algo"));
+    function createTask (string memory _name, string memory _description) public { 
+        tasks.push(Task(nextId, _name, _description));
+        nextId++;
     }
 
     function findIndex(uint _id) internal view returns(uint) { 
@@ -25,8 +26,9 @@ contract TaskContract {
     } 
     revert('Task not found');
 }
-    function readTask(uint _id) public view returns (uint) {
+    function readTask(uint _id) public view returns (uint, string memory, string memory) {
     uint index = findIndex(_id);
-    return index;   
+    return (tasks[index].id, tasks[index].name, tasks[index].description);   
     }
  }
+
