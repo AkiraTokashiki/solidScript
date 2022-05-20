@@ -36,6 +36,12 @@ contract TaskContract {
     tasks[index].name = _name;
     tasks[index].description = _description;
     }
+    function deleteTask(uint _id) public { 
+        uint index = findIndex(_id);
+        delete tasks[index];
+    }
  }
+
+
 
 
